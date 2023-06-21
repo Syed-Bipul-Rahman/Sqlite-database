@@ -28,7 +28,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query = "CREATE TABLE " + DATABASE_TABLE + "(" + DATABASE_KEY_ID + "INTEGER PRIMARY AUTOINCREMENT, " + DATABASE_KEY_NAME + "TEXT," + DATABASE_KEY_AGE + "TEXT," + DATABASE_KEY_CITY + "TEXT" + ")";
+        String query = "CREATE TABLE " + DATABASE_TABLE + "(" +
+                DATABASE_KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                DATABASE_KEY_NAME + " TEXT, " +
+                DATABASE_KEY_AGE + " TEXT, " +
+                DATABASE_KEY_CITY + " TEXT" +
+                ")";
         db.execSQL(query);
 
     }
@@ -124,7 +129,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             return age;
         }
         return null;
-    }public String getCity(long l1) {
+    }
+
+    public String getCity(long l1) {
         db = this.getWritableDatabase();
         Cursor cursor = db.query(DATABASE_TABLE, new String[]{DATABASE_KEY_ID, DATABASE_KEY_NAME, DATABASE_KEY_AGE, DATABASE_KEY_CITY}, DATABASE_KEY_ID + "=" + l1, null, null, null, null);
 
